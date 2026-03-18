@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Invitación Titulación Mónica</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f0f1a, #1f1f3d);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.container {
+    padding: 50px 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: auto;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 2s ease;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #ff4da6;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #ff1a8c;
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1;}
+}
+
+/* Contador */
+#countdown {
+    font-size: 20px;
+    margin-top: 15px;
+    color: #ffb3d9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Música -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <div class="card">
+
+        <h1>🎓 Sistema Completado</h1>
+        <h2 id="nombre">Invitado</h2>
+		<p>Tienes <span id="lugares"></span> lugares disponibles</p>
+
+		<label>¿Cuántos asistirán?</label><br>
+		<input type="number" id="confirmados" min="1" style="padding:8px; border-radius:10px; margin-top:10px;">
+		<br>
+		<button class="btn" onclick="confirmar()">Confirmar asistencia</button>
+
+        <p>Después de años de esfuerzo...</p>
+        <p><strong>Titulación: EXITOSA ✔️</strong></p>
+
+        <p>Te invito a celebrar este logro conmigo 💻✨</p>
+
+        <p>📅 20 de Abril 2026</p>
+        <p>⏰ 7:00 PM</p>
+        <p>📍 Celaya, Guanajuato</p>
+
+        <!-- ⏳ Contador -->
+        <div id="countdown"></div>
+
+        <!-- 📍 Mapa -->
+        <iframe 
+            src="https://maps.google.com/maps?q=Celaya%20Guanajuato&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="200" style="border-radius:10px; margin-top:15px;">
+        </iframe>
+
+        <!-- 💌 RSVP -->
+    </div>
+</div>
+
+<script>
+// ⏳ CONTADOR
+const eventDate = new Date("April 20, 2026 19:00:00").getTime();
+
+const countdownFunction = setInterval(function() {
+
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("countdown").innerHTML =
+        "⏳ Faltan " + days + " días " + hours + " hrs " + minutes + " min";
+
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "🎉 ¡Es hoy!";
+    }
+
+}, 1000);
+
+// 🔗 OBTENER ID DEL LINK
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+// 🔥 CAMBIA ESTE LINK POR TU APPS SCRIPT
+const API_URL = "PEGA_AQUI_TU_LINK";
+
+// 🚀 CARGAR DATOS DEL INVITADO
+fetch(API_URL + "?id=" + id)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("nombre").innerText = data.nombre;
+    document.getElementById("lugares").innerText = data.lugares;
+  });
+
+// 💌 GUARDAR CONFIRMACIÓN
+function confirmar() {
+    const confirmados = document.getElementById("confirmados").value;
+
+    fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+            id: id,
+            confirmados: confirmados
+        })
+    })
+    .then(() => {
+        alert("Confirmación guardada 💖");
+    });
+}
+</script>
+
+</body>
+</html>
