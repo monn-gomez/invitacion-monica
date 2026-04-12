@@ -79,7 +79,14 @@ h1 {
 		<label>¿Cuántos asistirán?</label><br>
 		<input type="number" id="confirmados" min="1" style="padding:8px; border-radius:10px; margin-top:10px;">
 		<br>
-		<button class="btn" onclick="confirmar()">Confirmar asistencia</button>
+		<form id="formulario" method="POST" target="hiddenFrame">
+    	<input type="hidden" name="id" id="inputId">
+    	<input type="hidden" name="confirmados" id="inputConfirmados">
+		</form>
+
+		<iframe name="hiddenFrame" style="display:none;"></iframe>
+
+		<button class="btn" onclick="enviar()">Confirmar asistencia</button>
 
         <p>Después de años de esfuerzo...</p>
         <p><strong>Titulación: EXITOSA ✔️</strong></p>
@@ -142,19 +149,21 @@ fetch(API_URL + "?id=" + id)
   });
 
 // 💌 GUARDAR CONFIRMACIÓN
-function confirmar() {
+function enviar() {
     const confirmados = document.getElementById("confirmados").value;
 
-    fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify({
-            id: id,
-            confirmados: confirmados
-        })
-    })
-    .then(() => {
-        alert("Confirmación guardada 💖");
-    });
+    if (!confirmados) {
+        alert("Pon cuántos asistirán 😤");
+        return;
+    }
+
+    document.getElementById("inputId").value = id;
+    document.getElementById("inputConfirmados").value = confirmados;
+
+    document.getElementById("formulario").action = API_URL;
+    document.getElementById("formulario").submit();
+
+    alert("Confirmación guardada 💖");
 }
 </script>
 
