@@ -79,7 +79,7 @@ h1 {
 		<label>¿Cuántos asistirán?</label><br>
 		<input type="number" id="confirmados" min="1" style="padding:8px; border-radius:10px; margin-top:10px;">
 		<br>
-		<form id="formulario" method="POST" target="hiddenFrame">
+		<form id="formulario" name="formulario" method="post" target="hiddenFrame">
     	<input type="hidden" name="id" id="inputId">
     	<input type="hidden" name="confirmados" id="inputConfirmados">
 		</form>
@@ -160,8 +160,11 @@ function enviar() {
     document.getElementById("inputId").value = id;
     document.getElementById("inputConfirmados").value = confirmados;
 
-    document.getElementById("formulario").action = API_URL;
-    document.getElementById("formulario").submit();
+    const form = document.getElementById("formulario");
+    form.action = API_URL;
+    form.method = "POST";
+
+    form.submit();
 
     alert("Confirmación guardada 💖");
 }
