@@ -2,11 +2,23 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Invitación Titulación Mónica</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
+	
+* {
+    box-sizing: border-box;
+}
+	
+.btn-white,
+.btn,
+.btn-google {
+    display: block;
+    margin: 15px auto;
+}
 
 /* ⚪ BOTÓN BLANCO ELEGANTE (tipo Apple) */
 .btn-white {
@@ -164,6 +176,78 @@ p {
 
 .btn-apple:hover {
     transform: scale(1.05);
+}
+
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+
+    body {
+        background-attachment: scroll; /* evita lag en celular */
+    }
+
+    .card {
+        margin: 20px 15px;
+        padding: 25px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    /* INPUT */
+    input {
+        width: 80%;
+        font-size: 16px;
+    }
+
+    /* BOTONES */
+    .btn-white,
+    .btn,
+    .btn-google {
+        width: 90%;
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    /* MAPA */
+    iframe {
+        height: 200px;
+    }
+
+    /* GALERÍA */
+    .gallery {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .gallery img {
+        width: 120px;
+        height: 160px;
+        flex-shrink: 0;
+    }
+}
+
+input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+}
+
+button {
+    cursor: pointer;
 }
 
 </style>
