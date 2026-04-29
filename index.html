@@ -4,178 +4,305 @@
 <meta charset="UTF-8">
 <title>Invitación Titulación Mónica</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
 <style>
+
+/* ⚪ BOTÓN BLANCO ELEGANTE (tipo Apple) */
+.btn-white {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: #ffffff;
+    color: #333;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 400;
+    letter-spacing: 2px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 12px rgba(255,255,255,0.6);
+    transition: all 0.3s ease;
+}
+
+.btn-white:hover {
+    transform: scale(1.05);
+    background: #f5f5f5;
+}
+
+/* 🌌 FONDO ELEGANTE (PUEDES CAMBIAR AQUÍ) */
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f0f1a, #1f1f3d);
-    color: white;
+    font-family: 'Inter', sans-serif;
+    background: url('fondo.png') no-repeat center/cover;
+    background-attachment: fixed;
+    color: #fff;
     text-align: center;
-    overflow-x: hidden;
 }
 
-.container {
-    padding: 50px 20px;
+/* OVERLAY OSCURO */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(10,30,60,0.55);
+    z-index: -1;
 }
 
+/* TARJETA PRINCIPAL */
 .card {
-    background: rgba(255,255,255,0.08);
-    padding: 30px;
-    border-radius: 20px;
-    max-width: 500px;
-    margin: auto;
-    backdrop-filter: blur(10px);
-    animation: fadeIn 2s ease;
+    background: rgba(255,255,255,0.15);
+	border: 1px solid rgba(255,255,255,0.2);
+    padding: 40px;
+    border-radius: 25px;
+    max-width: 550px;
+    margin: 40px auto;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
+/* TITULOS */
 h1 {
-    font-size: 32px;
+	font-family: 'Playfair Display', serif;
 }
 
+h2 {
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+h3 {
+
+}
+
+
+/* BOTONES */
 .btn {
     display: inline-block;
     margin-top: 20px;
-    padding: 12px 25px;
-    background: #ff4da6;
+    padding: 14px 28px;
+    background: linear-gradient(90deg, #4facfe, #00c6ff);
     color: white;
+    border-radius: 40px;
     text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
+    font-weight: 300;
+	letter-spacing: 2px;
+	box-shadow: 0 0 15px rgba(0,198,255,0.6);
 }
 
-.btn:hover {
-    background: #ff1a8c;
-}
-
-/* Animación */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1;}
-}
-
-/* Contador */
+/* CONTADOR */
 #countdown {
-    font-size: 20px;
     margin-top: 15px;
-    color: #ffb3d9;
+    font-size: 20px;
+    color: #ffd6eb;
 }
+
+/* SECCIONES BONITAS */
+.section {
+    background: #f4f8fb;
+    color: #2c3e50;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 30px auto;
+    max-width: 500px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* TITULOS SECCION */
+.section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+/* ICONOS SVG */
+.icon {
+    width: 40px;
+    margin: 10px;
+}
+
+/* GALERIA */
+.gallery img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.08);
+}
+
+/* SCROLL SUAVE */
+html {
+    scroll-behavior: smooth;
+}
+
+p {
+	font-weight: 300;
+    letter-spacing: 2px;
+}
+
+/* 🔴 GOOGLE elegante */
+.btn-google {
+    background: linear-gradient(90deg, #c94b4b, #8b2e2e);
+    color: white;
+    box-shadow: 0 0 10px rgba(139,46,46,0.3);
+}
+
+.btn-google:hover {
+    transform: scale(1.05);
+}
+
+/* ⚪ APPLE */
+.btn-apple {
+    background: #ffffff;
+    color: #333;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.btn-apple:hover {
+    transform: scale(1.05);
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Música -->
-<audio autoplay loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
-</audio>
+<div class="card">
 
-<div class="container">
-    <div class="card">
+    <h1>🎓 Titulación Mónica Gómez</h1>
+    <h2 id="nombre">Invitado</h2>
 
-        <h1>🎓 Sistema Completado</h1>
-        <h2 id="nombre">Invitado</h2>
-		<p>Tienes <span id="lugares"></span> lugares disponibles</p>
+    <p>Tienes <span id="lugares"></span> lugares disponibles</p>
+	<p>¿Cuántos asistirán?</p><br>
 
-		<label>¿Cuántos asistirán?</label><br>
-		<input type="number" id="confirmados" min="1" style="padding:8px; border-radius:10px; margin-top:10px;">
-		<br>
-		<form id="formulario" name="formulario" method="post" target="hiddenFrame">
-    	<input type="hidden" name="id" id="inputId">
-    	<input type="hidden" name="confirmados" id="inputConfirmados">
-		</form>
+    <input type="number" id="confirmados" min="1" style="padding:10px; border-radius:10px;">
 
-		<iframe name="hiddenFrame" style="display:none;"></iframe>
+    <form id="formulario" method="post" target="hiddenFrame">
+        <input type="hidden" name="id" id="inputId">
+        <input type="hidden" name="confirmados" id="inputConfirmados">
+    </form>
 
-		<button class="btn" onclick="enviar()">Confirmar asistencia</button>
+    <iframe name="hiddenFrame" style="display:none;"></iframe>
 
-        <p>Después de años de esfuerzo...</p>
-        <p><strong>Titulación: EXITOSA ✔️</strong></p>
+    <br>
+    <button class="btn-white" onclick="enviar()">Confirmar asistencia</button>
 
-        <p>Te invito a celebrar este logro conmigo 💻✨</p>
+    <br>
 
-        <p>📅 20 de Abril 2026</p>
-        <p>⏰ 7:00 PM</p>
-        <p>📍 Celaya, Guanajuato</p>
+	<button class="btn btn-google" onclick="agregarCalendario()">
+		Agregar al calendario
+    </button>
+	
+    <!-- <a class="btn btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fiesta+de+Titulacion&dates=20260523T150000/20260523T210000&location=Celaya" target="_blank">
+        Agregar a Google Calendar
+    </a>
 
-        <!-- ⏳ Contador -->
-        <div id="countdown"></div>
+    <a class="btn btn-apple" href="evento.ics" download>
+        Agregar a Apple Calendar
+    </a> -->
 
-        <!-- 📍 Mapa -->
-        <iframe 
-            src="https://maps.google.com/maps?q=Celaya%20Guanajuato&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            width="100%" height="200" style="border-radius:10px; margin-top:15px;">
-        </iframe>
+    <p>Te invito a celebrar este logro conmigo ✨</p>
 
-        <!-- 💌 RSVP -->
+    <p>📅 23 de Mayo 2026</p>
+    <p>⏰ 3:00 PM</p>
+    <p>📍 Salón Quinta Violeta</p>
+
+    <div id="countdown"></div>
+
+</div>
+
+<!-- 📍 MAPA -->
+<div class="card">
+    <h2>Ubicación</h2>
+	<p>Pedro Vargas #126 Colonia Imperial</p>
+
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.9834516570395!2d-100.84837032580306!3d20.547857980983867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842cbb27ee286757%3A0x4c5abfc9d02d7f66!2sPedro%20Vargas%20126%2C%20Imperial%2C%2038028%20Celaya%2C%20Gto.!5e0!3m2!1ses-419!2smx!4v1777432880746!5m2!1ses-419!2smx"
+        width="100%" 
+        height="250"
+        style="border-radius:15px; border:0;">
+    </iframe>
+
+</div>
+
+<!-- 📸 GALERIA -->
+<div class="card">
+    
+
+    <div class="gallery">
+		<img src="img/foto1.jpeg">
+		<img src="img/foto2.jpeg">
+		<img src="img/foto3.jpeg">
     </div>
 </div>
 
 <script>
-// ⏳ CONTADOR
-const eventDate = new Date("April 20, 2026 19:00:00").getTime();
+/* CONTADOR */
+const eventDate = new Date("May 23, 2026 15:00:00").getTime();
 
-const countdownFunction = setInterval(function() {
-
+const countdownFunction = setInterval(() => {
     const now = new Date().getTime();
-    const distance = eventDate - now;
+    const d = eventDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const days = Math.floor(d / (1000*60*60*24));
+    const hours = Math.floor((d % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((d % (1000*60*60)) / (1000*60));
 
-    document.getElementById("countdown").innerHTML =
-        "⏳ Faltan " + days + " días " + hours + " hrs " + minutes + " min";
-
-    if (distance < 0) {
+    if (d < 0) {
         clearInterval(countdownFunction);
         document.getElementById("countdown").innerHTML = "🎉 ¡Es hoy!";
+        return;
     }
 
+    document.getElementById("countdown").innerHTML =
+    `⏳ ${days} días • ${hours} hrs • ${minutes} min`;
 }, 1000);
 
-// 🔗 OBTENER ID DEL LINK
+
+/* API */
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-// 🔥 CAMBIA ESTE LINK POR TU APPS SCRIPT
 const API_URL = "https://script.google.com/macros/s/AKfycbwjLEiORCCJNU_4I-Yu1H8Qx9Lnbw2xpLJZrs7NBvCx7uKgyMiy3UBOx0keV_TnLmk3kg/exec";
-	//https://script.google.com/macros/s/AKfycbwjLEiORCCJNU_4I-Yu1H8Qx9Lnbw2xpLJZrs7NBvCx7uKgyMiy3UBOx0keV_TnLmk3kg/exec
-	//https://script.google.com/macros/library/d/1MrMzPX5LkmjHKix7UmmTqWKo1gd79NRFPGYtU9Yg7BQCjx-CjKQQQDnm/3
 
-// 🚀 CARGAR DATOS DEL INVITADO
+/* CARGAR DATOS */
 fetch(API_URL + "?id=" + id)
-  .then(res => res.json())
-  .then(data => {
+.then(res => res.json())
+.then(data => {
     document.getElementById("nombre").innerText = data.nombre;
     document.getElementById("lugares").innerText = data.lugares;
 
     const input = document.getElementById("confirmados");
     const boton = document.querySelector("button");
 
-    // 🔒 Limitar máximo
     input.max = data.lugares;
 
-    // ❌ Si ya confirmó
     if (data.confirmados > 0) {
         input.value = data.confirmados;
         input.disabled = true;
         boton.disabled = true;
-        boton.innerText = "Ya confirmaste 💖";
+        boton.innerText = "Ya confirmaste";
     }
 });
 
-// 💌 GUARDAR CONFIRMACIÓN
+
+/* GUARDAR */
 function enviar() {
-    const confirmados = Number(document.getElementById("confirmados").value);
-    const max = Number(document.getElementById("confirmados").max);
+    const input = document.getElementById("confirmados");
+    const confirmados = Number(input.value);
+    const max = Number(input.max);
 
     if (!confirmados) {
-        alert("Pon cuántos asistirán 😤");
+        alert("Escribe cuantos asistirán");
         return;
     }
 
     if (confirmados > max) {
-        alert("No puedes confirmar más lugares de los asignados 😠");
+        alert("No puedes confirmar más lugares de los asignados");
         return;
     }
 
@@ -189,6 +316,21 @@ function enviar() {
     form.submit();
 
     alert("Confirmación guardada 💖");
+}
+
+
+/* CALENDARIO */
+function agregarCalendario() {
+    const isApple = /iPhone|iPad|Mac/i.test(navigator.userAgent);
+
+    if (isApple) {
+        window.location.href = "evento.ics";
+    } else {
+        window.open(
+            "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fiesta+de+Titulacion&dates=20260523T150000/20260523T210000&location=Pedro+Vargas+126+Celaya",
+            "_blank"
+        );
+    }
 }
 </script>
 
